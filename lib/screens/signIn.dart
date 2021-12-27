@@ -34,7 +34,7 @@ class _SignInState extends State<SignIn> {
                       height: 60,
                       child: Image.asset("assets/images/Herb.jpg"),
                     ),
-                    const SizedBox(height: 30.0),
+                    const SizedBox(height: 90.0),
                     Container(
                       margin: const EdgeInsets.all(8.0),
                       decoration: BoxDecoration(

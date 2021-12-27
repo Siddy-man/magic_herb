@@ -10,106 +10,222 @@ class LearnScreen extends StatefulWidget {
 }
 
 class _LearnScreenState extends State<LearnScreen> {
-  List images = [
-    "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/borage.jpg",
-    "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/jimbu.jpg",
-    "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/rue.jpg",
-    "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/shiso.jpg",
-    "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/sorrel.jpg",
-    "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/tulsi.jpg",
-    "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/turmeric.jpg"
+  final TextStyle dropdownMenuItem =
+  TextStyle(color: Colors.black, fontSize: 18);
+
+  final primary = Color(0xff4f7344);
+  final secondary = Color(0xff000000);
+
+  final List<Map> schoolLists = [
+    {
+      "title": "Borage",
+      "logoText":
+      "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/borage.jpg",
+    },
+    {
+      "title": "Jimbu",
+      "logoText":
+      "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/jimbu.jpg",
+    },
+    {
+      "title": "Rue",
+      "logoText":
+      "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/rue.jpg",
+    },
+    {
+      "title": "Sisho",
+      "logoText":
+      "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/sisho.jpg",
+    },
+    {
+      "title": "Sorrel",
+      "logoText":
+      "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/sorrel.jpg",
+    },
+    {
+      "title": "Tulsi",
+      "logoText":
+      "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/tulsi.jpg",
+    },
+    {
+      "title": "Turmeric",
+      "logoText":
+      "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/turmeric.jpg",
+    },
   ];
-  List titles = [
-    "Borage",
-    "Jimbu",
-    "Rue",
-    "Sisho",
-    "Sorrel",
-    "Tulsi",
-    "Turmeric"
-  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-          children: <Widget>[
-            Text("Learn About Herbs!", style:TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
-            Flexible(
-              child: ListView.builder(
-                itemCount: images.length,
-                itemBuilder: (context, int index) {
-                  return cartItems(index);
-                },
-              ),
-            ),
-          ],
-        )
-    );
-  }
-  Widget cartItems(int index) {
-    return Card(
-      margin: const EdgeInsets.all(5),
-      color: Colors.white,
-      elevation: 5,
-      clipBehavior: Clip.antiAlias,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20.0),
-      ),
-      child: Container(
-        padding: const EdgeInsets.all(10),
-        alignment: Alignment.center,
-        height: 250,
-        width: MediaQuery.of(context).size.width*0.9,
+      backgroundColor: Color(0xfff0f0f0),
+      body: SingleChildScrollView(
         child: Container(
-          padding: const EdgeInsets.all(0),
-          margin: EdgeInsets.all(10),
-          height: 130,
-          child: Row(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: Stack(
             children: <Widget>[
               Container(
-                width: 130,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: NetworkImage(images[index]),
-                      fit: BoxFit.cover,
-                    )),
+                padding: EdgeInsets.only(top: 145),
+                height: MediaQuery.of(context).size.height,
+                width: double.infinity,
+                child: ListView.builder(
+                    itemCount: schoolLists.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return buildList(context, index);
+                    }),
               ),
-              Flexible(
+              Container(
+                height: 140,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    color: Color(0xff4f7344),
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(30),
+                        bottomRight: Radius.circular(30))),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Column(
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Row(
-                        children: <Widget>[
-                          Flexible(
-                            child: Text(
-                              titles[index],
-                              overflow: TextOverflow.fade,
-                              softWrap: true,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w600, fontSize: 15),
-                            ),
-                          ),
-                        ],
+                      // IconButton(
+                      //   onPressed: () {},
+                      //   icon: Icon(
+                      //     Icons.menu,
+                      //     color: Colors.white,
+                      //   ),
+                      // ),
+                      Text(
+                        "Herbs",
+                        style: TextStyle(color: Colors.white, fontSize: 24),
                       ),
-
-
-                      Row(
-                        children: <Widget>[
-                          RaisedButton(
-                              onPressed: () {Navigator.push(context, MaterialPageRoute(builder:(context) => HerbDescription(title: titles[index], image: images[index])));},
-                            child: Text("Learn About This Herb")
-                          ),
-                          Spacer(),
-                        ],
-                      ),
+                      // IconButton(
+                      //   onPressed: () {},
+                      //   icon: Icon(
+                      //     Icons.filter_list,
+                      //     color: Colors.white,
+                      //   ),
+                      // ),
                     ],
                   ),
+                ),
+              ),
+              Container(
+                child: Column(
+                  children: <Widget>[
+                    SizedBox(
+                      height: 110,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      child: Material(
+                        elevation: 5.0,
+                        borderRadius: BorderRadius.all(Radius.circular(30)),
+                        child: TextField(
+                          // controller: TextEditingController(text: locations[0]),
+                          cursorColor: Theme.of(context).primaryColor,
+                          style: dropdownMenuItem,
+                          decoration: InputDecoration(
+                              hintText: "Search Herb",
+                              hintStyle: TextStyle(
+                                  color: Colors.black38, fontSize: 16),
+                              prefixIcon: Material(
+                                elevation: 0.0,
+                                borderRadius:
+                                BorderRadius.all(Radius.circular(30)),
+                                child: Icon(Icons.search),
+                              ),
+                              border: InputBorder.none,
+                              contentPadding: EdgeInsets.symmetric(
+                                  horizontal: 25, vertical: 13)),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               )
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget buildList(BuildContext context, int index) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(25),
+        color: Colors.white,
+      ),
+      width: double.infinity,
+      height: 110,
+      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            width: 50,
+            height: 50,
+            margin: EdgeInsets.only(right: 15),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(50),
+              border: Border.all(width: 3, color: secondary),
+              image: DecorationImage(
+                  image: NetworkImage(schoolLists[index]['logoText']),
+                  fit: BoxFit.fill),
+            ),
+          ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  schoolLists[index]['title'],
+                  style: TextStyle(
+                      color: primary,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18),
+                ),
+                // SizedBox(
+                //   height: 6,
+                // ),
+                // Row(
+                //   children: <Widget>[
+                //     Icon(
+                //       Icons.location_on,
+                //       color: secondary,
+                //       size: 20,
+                //     ),
+                //     SizedBox(
+                //       width: 5,
+                //     ),
+                //     Text(schoolLists[index]['location'],
+                //         style: TextStyle(
+                //             color: primary, fontSize: 13, letterSpacing: .3)),
+                //   ],
+                // ),
+                // SizedBox(
+                //   height: 6,
+                // ),
+                // Row(
+                //   children: <Widget>[
+                //     Icon(
+                //       Icons.school,
+                //       color: secondary,
+                //       size: 20,
+                //     ),
+                //     SizedBox(
+                //       width: 5,
+                //     ),
+                //     Text(schoolLists[index]['type'],
+                //         style: TextStyle(
+                //             color: primary, fontSize: 13, letterSpacing: .3)),
+                //   ],
+                // ),
+              ],
+            ),
+          )
+        ],
       ),
     );
   }

@@ -2,6 +2,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:magic_herb/screens/homeScreen.dart';
 import 'package:magic_herb/screens/profileScreen.dart';
+import 'cartScreen.dart';
 import 'doScreen.dart';
 import 'learnScreen.dart';
 
@@ -13,7 +14,7 @@ class Navigation extends StatefulWidget {
 }
 
 class _NavigationState extends State<Navigation> {
-  final List<Widget> _tabItems = [HomeScreen(), LearnScreen(), DoScreen(), ProfileScreen()];
+  final List<Widget> _tabItems = [HomeScreen(), LearnScreen(), DoScreen(), CartScreen(), ProfileScreen()];
   int _page = 0;
   GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   @override
@@ -33,9 +34,13 @@ class _NavigationState extends State<Navigation> {
           Icon(Icons.group_add,
               size: 30,
               color: (_page == 2) ? Colors.green : Colors.white),
-          Icon(Icons.account_box,
+          Icon(Icons.add_shopping_cart_sharp,
               size: 30,
               color: (_page == 3) ? Colors.green : Colors.white),
+
+          Icon(Icons.account_box,
+              size: 30,
+              color: (_page == 4) ? Colors.green : Colors.white),
         ],
         color: Color.fromRGBO(100, 226, 100, 0.60),
         buttonBackgroundColor: Colors.grey[50],

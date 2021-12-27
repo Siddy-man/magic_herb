@@ -13,7 +13,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   final pages = [
     PageViewModel(
       pageColor: Colors.white,
-      bubbleBackgroundColor: Colors.greenAccent,
+      bubbleBackgroundColor:Color(0xff4f7344),
       title: Container(child: SizedBox(height: 50)),
       body: Column(
         children:[
@@ -39,7 +39,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     ),
     PageViewModel(
       pageColor: Colors.white,
-      bubbleBackgroundColor: Colors.greenAccent,
+      bubbleBackgroundColor:Color(0xff4f7344),
       title: Container(),
       body: Column(
         children:[
@@ -66,7 +66,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     ),
     PageViewModel(
       pageColor: Colors.white,
-      bubbleBackgroundColor: Colors.greenAccent,
+      bubbleBackgroundColor:Color(0xff4f7344),
       title: Container(),
       body: Column(
         children:[
@@ -75,7 +75,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               fontSize: 20.0,
               fontWeight: FontWeight.bold
           ),),
-          Text("Both uploading and sharing projects!",
+          Text("Buy and sell recipes!",
             style: TextStyle(
                 color: Colors.black54,
                 fontSize: 16.0
