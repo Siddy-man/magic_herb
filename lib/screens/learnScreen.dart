@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:magic_herb/screens/herbDescriptionScreen.dart';
 
-
 class LearnScreen extends StatefulWidget {
   const LearnScreen({Key? key}) : super(key: key);
 
@@ -11,7 +10,7 @@ class LearnScreen extends StatefulWidget {
 
 class _LearnScreenState extends State<LearnScreen> {
   final TextStyle dropdownMenuItem =
-  TextStyle(color: Colors.black, fontSize: 18);
+      TextStyle(color: Colors.black, fontSize: 18);
 
   final primary = Color(0xff4f7344);
   final secondary = Color(0xff000000);
@@ -20,37 +19,37 @@ class _LearnScreenState extends State<LearnScreen> {
     {
       "title": "Borage",
       "logoText":
-      "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/borage.jpg",
+          "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/borage.jpg",
     },
     {
       "title": "Jimbu",
       "logoText":
-      "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/jimbu.jpg",
+          "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/jimbu.jpg",
     },
     {
       "title": "Rue",
       "logoText":
-      "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/rue.jpg",
+          "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/rue.jpg",
     },
     {
       "title": "Sisho",
       "logoText":
-      "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/sisho.jpg",
+          "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/sisho.jpg",
     },
     {
       "title": "Sorrel",
       "logoText":
-      "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/sorrel.jpg",
+          "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/sorrel.jpg",
     },
     {
       "title": "Tulsi",
       "logoText":
-      "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/tulsi.jpg",
+          "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/tulsi.jpg",
     },
     {
       "title": "Turmeric",
       "logoText":
-      "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/turmeric.jpg",
+          "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/turmeric.jpg",
     },
   ];
 
@@ -131,7 +130,7 @@ class _LearnScreenState extends State<LearnScreen> {
                               prefixIcon: Material(
                                 elevation: 0.0,
                                 borderRadius:
-                                BorderRadius.all(Radius.circular(30)),
+                                    BorderRadius.all(Radius.circular(30)),
                                 child: Icon(Icons.search),
                               ),
                               border: InputBorder.none,
@@ -186,6 +185,37 @@ class _LearnScreenState extends State<LearnScreen> {
                       fontWeight: FontWeight.bold,
                       fontSize: 18),
                 ),
+                Row(
+                  children: <Widget>[
+                    const SizedBox(width: 10.0),
+                    Expanded(
+                      child: RaisedButton(
+                        color: Color(0xffD8E9A8),
+                        textColor: Color(0xff191A19),
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
+                        child: Text("Info"),
+                        onPressed: () {},
+                      ),
+                    ),
+                    const SizedBox(width: 10.0),
+                    Expanded(
+                      child: RaisedButton(
+                        color: Color(0xff1E5128),
+                        textColor: Colors.white,
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
+                        child: Text("Products"),
+                        onPressed: () {},
+                      ),
+                    ),
+                    const SizedBox(width: 10.0),
+                  ],
+                ),
                 // SizedBox(
                 //   height: 6,
                 // ),
@@ -230,4 +260,3 @@ class _LearnScreenState extends State<LearnScreen> {
     );
   }
 }
-

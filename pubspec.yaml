@@ -39,6 +39,8 @@ dependencies:
   curved_navigation_bar:
   flutter_custom_clippers:
   flutter_swiper_null_safety:
+  firebase_core:
+  firebase_auth:
 dev_dependencies:
   flutter_test:
     sdk: flutter

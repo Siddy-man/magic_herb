@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'dart:ui' as ui;
@@ -81,7 +82,9 @@ class _SignInState extends State<SignIn> {
                                 borderRadius: BorderRadius.circular(30.0)),
                             color: Color(0xff4f7344),
                             textColor: Colors.white,
-                            onPressed: () {Navigator.push(context, MaterialPageRoute(builder:(context) => Navigation()));},
+                            onPressed: () {
+                              Navigator.push(context, MaterialPageRoute(builder:(context) => Navigation()));
+                              },
                             child: Text("Login"),
                           ),
                           const SizedBox(height: 10.0),

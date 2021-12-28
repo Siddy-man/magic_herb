@@ -62,7 +62,14 @@ class _SignUpState extends State<SignUp> {
                         obscureText: true,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: "Password",
+                          labelText: "Username",
+                        ),
+                      ),
+                      TextField(
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: "Email",
                         ),
                       ),
                       const SizedBox(height: 10.0),
@@ -70,7 +77,7 @@ class _SignUpState extends State<SignUp> {
                         obscureText: true,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: "Username",
+                          labelText: "Password",
                         ),
                       ),
                       const SizedBox(height: 30.0),

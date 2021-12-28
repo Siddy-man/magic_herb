@@ -46,6 +46,33 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
+  List images = [
+    "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/borage.jpg",
+    "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/jimbu.jpg",
+    "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/rue.jpg",
+    "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/shiso.jpg",
+    "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/sorrel.jpg",
+    "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/tulsi.jpg",
+    "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/turmeric.jpg"
+  ];
+  List titles = [
+    "Borage",
+    "Jimbu",
+    "Rue",
+    "Sisho",
+    "Sorrel",
+    "Tulsi",
+    "Turmeric"
+  ];
+  List greetings = [
+    "Welcome Back ",
+    "What's Up ",
+    "Let's go ",
+    "Get ready to have some fun ",
+    "Hi "
+  ];
+  int randomNumber = Random().nextInt(7);
+  int randomGreeting = Random().nextInt(5);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,40 +101,128 @@ class _HomeScreenState extends State<HomeScreen> {
                             fontWeight: FontWeight.bold, fontSize: 24.0),
                       ),
                       const SizedBox(height: 20.0),
-                      Text(
-                        "Hello User!",
-                        style: TextStyle(
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.orange),
-                      )
+                      Text(greetings[randomGreeting] + "(UserName)" + "!👋" ,style:TextStyle(fontSize: 20, fontWeight:FontWeight.w400, color: Colors.grey))
                     ],
                   ),
                 ),
                 const SizedBox(height: 30.0),
-                Container(
-                  height: 300,
-                  color: Colors.orange,
-                ),
                 const SizedBox(height: 20.0),
-                Container(
-                  height: 300,
-                  color: Colors.red,
-                ),
+                        Container(color: Colors.red, height: 300, child:
+                        Column(
+                          children: <Widget>[
+                        Container(
+                        width: double.infinity,
+                          height: 300,
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: NetworkImage(
+                                      'https://image.freepik.com/free-photo/top-view-cooked-pearl-barley-inside-plate-with-notepad-light-surface_140725-75115.jpg'),
+                                  fit: BoxFit.cover)),
+                          child: Container(
+                            width: MediaQuery.of(context).size.width*0.8,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: <Widget>[
+                                Container(
+                                  color: Color(0xff1E5128),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      " Deal Of The Day ",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 35,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 30,
+                                ),
+                                Container(
+                                  height: 50,
+                                  margin: EdgeInsets.symmetric(horizontal: 40),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Color(0xff1E5128)),
+                                  child: Center(
+                                      child: Text(
+                                        "Shop Now",
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold),
+                                      )),
+                                ),
+                                SizedBox(
+                                  height: 30,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        ])),
+
                 const SizedBox(height: 30.0),
-                Container(
-                  height: 300,
-                  color: Colors.yellow,
-                ),
-                const SizedBox(height: 10.0),
-                Container(
-                  height: 300,
-                  color: Colors.pink,
-                ),
-                const SizedBox(height: 10.0),
+                Container(color: Colors.red, height: 300, child:
+                Column(
+                    children: <Widget>[
+                      Container(
+                        width: double.infinity,
+                        height: 300,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: NetworkImage(
+                                    images[randomNumber]),
+                                fit: BoxFit.cover)),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width*0.8,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: <Widget>[
+                              Container(
+                                color: Color(0xff1E5128),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    "Herb Of The Day",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 35,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 30,
+                              ),
+                              Container(
+                                height: 50,
+                                margin: EdgeInsets.symmetric(horizontal: 40),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: Color(0xffD8E9A8)),
+                                child: Center(
+                                    child: Text(
+                                      "Explore",
+                                      style: TextStyle(
+                                          color: Colors.grey[900],
+                                          fontWeight: FontWeight.bold),
+                                    )),
+                              ),
+                              SizedBox(
+                                height: 30,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ])),
+                const SizedBox(height: 30.0),
+                Container(color: Colors.pink, height: 300),
               ],
             ),
           ),
+
           Positioned(
               top: topPosition,
               left: 0,

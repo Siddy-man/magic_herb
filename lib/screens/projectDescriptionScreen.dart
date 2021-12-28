@@ -15,6 +15,7 @@ class _ProjectDescriptionScreenState extends State<ProjectDescriptionScreen> {
         children: [
           Padding(
             padding: const EdgeInsets.only(right: 320),
+
             child: SizedBox(width: 50, height: 50, child: FlatButton(color: Colors.black.withOpacity(0), onPressed: (){Navigator.pop(context);}, child: Icon(Icons.close))),
           ),
           Text("Project Name", style: TextStyle(color: Colors.black, fontSize: 30, decoration: TextDecoration.none)),

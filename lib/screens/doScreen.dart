@@ -84,7 +84,7 @@ class _DoScreenState extends State<DoScreen> {
           SliverToBoxAdapter(
             child: Container(
                 margin: EdgeInsets.only(top: 20.0),
-                color: Colors.pink,
+                color: Colors.redAccent,
                 child: Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Row(
@@ -112,7 +112,7 @@ class _DoScreenState extends State<DoScreen> {
           SliverToBoxAdapter(
             child: Container(
                 padding: EdgeInsets.all(20.0),
-                color: Colors.pink,
+                color: Colors.redAccent,
                 child: Text("Recommended for you".toUpperCase(),
                     style: TextStyle(
                         color: Colors.white, fontWeight: FontWeight.bold))),
