@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:magic_herb/screens/herbDescriptionScreen.dart';
 
+import 'herbScreen.dart';
+
 class LearnScreen extends StatefulWidget {
   const LearnScreen({Key? key}) : super(key: key);
 
@@ -197,7 +199,7 @@ class _LearnScreenState extends State<LearnScreen> {
                           borderRadius: BorderRadius.circular(20.0),
                         ),
                         child: Text("Info"),
-                        onPressed: () {},
+                        onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => HerbScreen(herb: schoolLists[index]['title'], image:schoolLists[index]['logoText'],)));},
                       ),
                     ),
                     const SizedBox(width: 10.0),
@@ -210,7 +212,7 @@ class _LearnScreenState extends State<LearnScreen> {
                           borderRadius: BorderRadius.circular(20.0),
                         ),
                         child: Text("Products"),
-                        onPressed: () {},
+                        onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => HerbScreen(herb: schoolLists[index]['title'], image:schoolLists[index]['logoText'],)));},
                       ),
                     ),
                     const SizedBox(width: 10.0),

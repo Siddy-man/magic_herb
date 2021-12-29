@@ -27,7 +27,7 @@ class _DoScreenState extends State<DoScreen> {
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
-            automaticallyImplyLeading: false,
+              automaticallyImplyLeading: false,
               expandedHeight: 150.0,
               pinned: true,
               flexibleSpace: FlexibleSpaceBar(
@@ -38,7 +38,9 @@ class _DoScreenState extends State<DoScreen> {
                 IconButton(
                   icon: const Icon(Icons.favorite_border),
                   tooltip: 'Favorites',
-                  onPressed: () {/* ... */},
+                  onPressed: () {
+                    /* ... */
+                  },
                 ),
               ]),
           SliverToBoxAdapter(
@@ -74,7 +76,7 @@ class _DoScreenState extends State<DoScreen> {
                   childAspectRatio: 1.0,
                   crossAxisCount: 2),
               delegate: SliverChildBuilderDelegate(
-                    (BuildContext context, int index) {
+                (BuildContext context, int index) {
                   return _buildItems(index, context);
                 },
                 childCount: images.length,
@@ -119,7 +121,7 @@ class _DoScreenState extends State<DoScreen> {
           ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
-                  (BuildContext context, int index) {
+              (BuildContext context, int index) {
                 return _buildListItem(index);
               },
               childCount: images.length,
@@ -178,7 +180,7 @@ class _DoScreenState extends State<DoScreen> {
                   fontSize: 18.0,
                   fontWeight: FontWeight.bold,
                   color: Colors.red),
-            )
+            ),
           ],
         ),
       ),
@@ -249,7 +251,21 @@ class _DoScreenState extends State<DoScreen> {
                         fontSize: 18.0,
                         fontWeight: FontWeight.bold,
                         color: Colors.red),
-                  )
+                  ),
+                  SizedBox(height: 10),
+                  RaisedButton(
+                    color: Color(0xff191A19),
+                      onPressed: () {},
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 15.0),
+                              child: Text("Add To Cart", style:TextStyle(color: Colors.white)),
+                            ),
+                            Icon(Icons.add_shopping_cart_sharp,
+                                color: Colors.white),
+                          ]))
                 ],
               ),
             ),

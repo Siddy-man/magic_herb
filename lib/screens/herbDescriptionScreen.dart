@@ -24,11 +24,16 @@ class _HerbDescriptionState extends State<HerbDescription> {
     return Container(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(right: 320),
-              child: SizedBox(width: 50, height: 50, child: FlatButton(color: Colors.black.withOpacity(0), onPressed: (){Navigator.pop(context);}, child: Icon(Icons.close))),
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 125),
+                  child: SizedBox(width: 50, height: 50, child: FlatButton(color: Colors.black.withOpacity(0), onPressed: (){Navigator.pop(context);}, child: Icon(Icons.close))),
+                ),
+                Text(widget.title, style: TextStyle(color: Colors.black, fontSize: 30, decoration: TextDecoration.none)),
+              ],
             ),
-            Text(widget.title, style: TextStyle(color: Colors.black, fontSize: 30, decoration: TextDecoration.none)),
+
             SizedBox(
                 child: Card(child: Image.network(widget.image)),
                 width: 300, height: 300
