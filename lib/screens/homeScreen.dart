@@ -88,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 190,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(bottomRight: Radius.circular(30.0)),
-                    color: Colors.white,
+                    color: Color(0xff1E5128),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -98,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Text(
                         "Homescreen",
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 24.0),
+                            fontWeight: FontWeight.bold, fontSize: 24.0, color: Colors.white),
                       ),
                       const SizedBox(height: 20.0),
                       Text(greetings[randomGreeting] + "(UserName)" + "!👋" ,style:TextStyle(fontSize: 20, fontWeight:FontWeight.w400, color: Colors.grey))
@@ -124,7 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: <Widget>[
                                 Container(
-                                  color: Color(0xff1E5128),
+                                  color: Color.fromRGBO(30, 81, 40, 0.5),
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
@@ -180,7 +180,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: <Widget>[
                               Container(
-                                color: Color(0xff1E5128),
+                                color: Color.fromRGBO(30, 81, 40, 0.5),
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
@@ -200,12 +200,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                 margin: EdgeInsets.symmetric(horizontal: 40),
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
-                                    color: Color(0xffD8E9A8)),
+                                    color: Color(0xff1E5128)),
                                 child: Center(
                                     child: Text(
                                       "Explore",
                                       style: TextStyle(
-                                          color: Colors.grey[900],
+                                          color: Colors.white,
                                           fontWeight: FontWeight.bold),
                                     )),
                               ),
@@ -233,7 +233,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 alignment: Alignment.centerLeft,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(bottomRight: Radius.circular(30.0)),
-                  color: Colors.white.withOpacity(_getOpacity()),
+                  color: Color(0xff1E5128).withOpacity(_getOpacity()),
                 ),
                 child: DefaultTextStyle(
                   style: TextStyle(),
@@ -242,7 +242,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Semantics(
                     child: Text(
                       'Homescreen',
-                      style: TextStyle(color: Colors.black, fontSize: 18.0,fontWeight: FontWeight.bold),
+                      style: TextStyle(color: Colors.white, fontSize: 18.0,fontWeight: FontWeight.bold),
                     ),
                     header: true,
                   ),

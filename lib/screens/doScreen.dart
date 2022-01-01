@@ -27,6 +27,7 @@ class _DoScreenState extends State<DoScreen> {
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
+            backgroundColor: Color(0xff1E5128),
               automaticallyImplyLeading: false,
               expandedHeight: 150.0,
               pinned: true,
@@ -45,7 +46,7 @@ class _DoScreenState extends State<DoScreen> {
               ]),
           SliverToBoxAdapter(
             child: Container(
-                color: Colors.deepOrange,
+                color: Color(0xff1E5128),
                 child: Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Row(
@@ -86,7 +87,7 @@ class _DoScreenState extends State<DoScreen> {
           SliverToBoxAdapter(
             child: Container(
                 margin: EdgeInsets.only(top: 20.0),
-                color: Colors.redAccent,
+                color: Color(0xff1E5128),
                 child: Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Row(
@@ -114,7 +115,7 @@ class _DoScreenState extends State<DoScreen> {
           SliverToBoxAdapter(
             child: Container(
                 padding: EdgeInsets.all(20.0),
-                color: Colors.redAccent,
+                color: Color(0xff1E5128),
                 child: Text("Recommended for you".toUpperCase(),
                     style: TextStyle(
                         color: Colors.white, fontWeight: FontWeight.bold))),
@@ -179,7 +180,7 @@ class _DoScreenState extends State<DoScreen> {
               style: TextStyle(
                   fontSize: 18.0,
                   fontWeight: FontWeight.bold,
-                  color: Colors.red),
+                  color: Color(0xff1E5128)),
             ),
           ],
         ),
@@ -206,7 +207,7 @@ class _DoScreenState extends State<DoScreen> {
                 style: TextStyle(
                     fontSize: 18.0,
                     fontWeight: FontWeight.bold,
-                    color: Colors.red),
+                    color: Color(0xff1E5128)),
               ),
             ),
           ),
@@ -250,7 +251,7 @@ class _DoScreenState extends State<DoScreen> {
                     style: TextStyle(
                         fontSize: 18.0,
                         fontWeight: FontWeight.bold,
-                        color: Colors.red),
+                        color: Color(0xff1E5128)),
                   ),
                   SizedBox(height: 10),
                   RaisedButton(

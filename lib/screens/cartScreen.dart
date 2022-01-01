@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+import 'package:magic_herb/screens/checkoutScreen.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({Key? key}) : super(key: key);
@@ -12,7 +13,7 @@ class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:AppBar(title: Text("Your Cart"), automaticallyImplyLeading: false,),
+      appBar:AppBar(title: Text("Your Cart"), automaticallyImplyLeading: false, backgroundColor: Color(0xff1E5128)),
       body: Column(
         children: <Widget>[
           Expanded(
@@ -78,8 +79,10 @@ class _CartScreenState extends State<CartScreen> {
             ),
             SizedBox(height: 10.0,),
             RaisedButton(
-              color: Colors.green,
-              onPressed: (){},
+              color: Color(0xff1E5128),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder:(context) => Checkout()));
+              },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[

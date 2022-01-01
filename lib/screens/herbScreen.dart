@@ -29,6 +29,7 @@ class _HerbScreenState extends State<HerbScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:AppBar(
+        backgroundColor: Color(0xff1E5128),
         title: Center(child: Padding(
           padding: const EdgeInsets.only(right: 40.0),
           child: Text(widget.herb.toString()),
