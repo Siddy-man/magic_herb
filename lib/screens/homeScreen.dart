@@ -218,7 +218,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ])),
                 const SizedBox(height: 30.0),
-                Container(color: Colors.pink, height: 300),
+                // Container(color: Colors.pink, height: 300),
               ],
             ),
           ),

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:magic_herb/screens/homeScreen.dart';
 import 'package:magic_herb/screens/signIn.dart';
+
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
 
@@ -10,6 +13,10 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  TextEditingController emailTextController = TextEditingController();
+  TextEditingController nameTextController = TextEditingController();
+  TextEditingController passwordTextController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,10 +31,15 @@ class _SignUpState extends State<SignUp> {
             backgroundColor: Colors.transparent,
             body: ListView(
               children: [
-                SizedBox(
+                Container(
                   width: 100,
-                  height: 60,
-                  child: Image.asset("assets/images/Herb.jpg"),
+                  height: 100,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      image: AssetImage('assets/images/Herb.jpg'),
+                    ),
+                  ),
                 ),
                 const SizedBox(height: 30.0),
                 Container(
@@ -42,9 +54,9 @@ class _SignUpState extends State<SignUp> {
                       Text(
                         "Hello!",
                         style: Theme.of(context).textTheme.headline4!.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey.shade800,
-                        ),
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey.shade800,
+                            ),
                       ),
                       Text(
                         "Sign up for an account",
@@ -52,27 +64,26 @@ class _SignUpState extends State<SignUp> {
                       ),
                       const SizedBox(height: 20.0),
                       TextField(
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: "Email address",
-                        ),
-                      ),
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: "Email address",
+                          ),
+                          controller: emailTextController),
                       const SizedBox(height: 10.0),
                       TextField(
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: "Username",
-                        ),
-                      ),
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: "Username",
+                          ),
+                          controller: nameTextController),
                       const SizedBox(height: 10.0),
                       TextField(
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: "Password",
-                        ),
-                      ),
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: "Password",
+                          ),
+                          controller: passwordTextController),
                       const SizedBox(height: 30.0),
                       RaisedButton(
                         padding: const EdgeInsets.all(16.0),
@@ -80,11 +91,22 @@ class _SignUpState extends State<SignUp> {
                             borderRadius: BorderRadius.circular(30.0)),
                         color: Color(0xff4f7344),
                         textColor: Colors.white,
-                        onPressed: () {},
+                        onPressed: () {
+                          FirebaseAuth.instance
+                              .createUserWithEmailAndPassword(
+                                  email: emailTextController.text,
+                                  password: passwordTextController.text)
+                              .then((value) {
+                            print("Created New Account");
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) => HomeScreen()));
+                          }).onError((error, stackTrace) {
+                            print("Error ${error.toString()}");
+                          });
+                        },
                         child: Text("Sign Up"),
                       ),
                       const SizedBox(height: 10.0),
-
                     ],
                   ),
                 ),
@@ -102,8 +124,12 @@ class _SignUpState extends State<SignUp> {
                               fontWeight: FontWeight.w500,
                               decoration: TextDecoration.underline),
                         ),
-                        onTap:(){Navigator.push(context, MaterialPageRoute(builder:(context) => SignIn()));}
-                    ),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SignIn()));
+                        }),
                   ],
                 ),
               ],
@@ -114,6 +140,7 @@ class _SignUpState extends State<SignUp> {
     );
   }
 }
+
 class RPSCustomPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
@@ -164,6 +191,7 @@ class RPSCustomPainter extends CustomPainter {
 
     canvas.drawPath(path_1, paint_1);
   }
+
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
     return true;

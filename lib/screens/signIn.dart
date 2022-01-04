@@ -30,11 +30,17 @@ class _SignInState extends State<SignIn> {
               body: Center(
                 child: ListView(
                   children: [
-                    SizedBox(
+                    Container(
                       width: 100,
-                      height: 60,
-                      child: Image.asset("assets/images/Herb.jpg"),
+                      height: 100,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                            image: AssetImage('assets/images/Herb.jpg'),
+                        ),
+                      ),
                     ),
+
                     const SizedBox(height: 90.0),
                     Container(
                       margin: const EdgeInsets.all(8.0),
@@ -106,7 +112,10 @@ class _SignInState extends State<SignIn> {
                               fontWeight: FontWeight.w500,
                               decoration: TextDecoration.underline),
                             ),
-                          onTap:(){Navigator.push(context, MaterialPageRoute(builder:(context) => SignUp()));}
+                          onTap:(){
+
+                            Navigator.push(context, MaterialPageRoute(builder:(context) => SignUp()));
+                          }
                         ),
                       ],
                     ),
