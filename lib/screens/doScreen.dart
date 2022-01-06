@@ -28,7 +28,7 @@ class _DoScreenState extends State<DoScreen> {
         slivers: <Widget>[
           SliverAppBar(
             backgroundColor: Color(0xff1E5128),
-              automaticallyImplyLeading: false,
+              // automaticallyImplyLeading: false,
               expandedHeight: 150.0,
               pinned: true,
               flexibleSpace: FlexibleSpaceBar(

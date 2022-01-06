@@ -1,9 +1,11 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:magic_herb/screens/doScreen.dart';
 import 'package:magic_herb/screens/projectDescriptionScreen.dart';
 
 import 'herbDescriptionScreen.dart';
+import 'herbScreen.dart';
 
 
 class HomeScreen extends StatefulWidget {
@@ -139,19 +141,24 @@ class _HomeScreenState extends State<HomeScreen> {
                                 SizedBox(
                                   height: 30,
                                 ),
-                                Container(
-                                  height: 50,
-                                  margin: EdgeInsets.symmetric(horizontal: 40),
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: Color(0xff1E5128)),
-                                  child: Center(
-                                      child: Text(
-                                        "Shop Now",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold),
-                                      )),
+                                RaisedButton(
+                                  color: Colors.transparent,
+                                  elevation: 0,
+                                  onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => DoScreen()));},
+                                  child: Container(
+                                    height: 50,
+                                    margin: EdgeInsets.symmetric(horizontal: 40),
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: Color(0xff1E5128)),
+                                    child: Center(
+                                        child: Text(
+                                          "Shop Now",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
+                                        )),
+                                  ),
                                 ),
                                 SizedBox(
                                   height: 30,
@@ -195,19 +202,24 @@ class _HomeScreenState extends State<HomeScreen> {
                               SizedBox(
                                 height: 30,
                               ),
-                              Container(
-                                height: 50,
-                                margin: EdgeInsets.symmetric(horizontal: 40),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: Color(0xff1E5128)),
-                                child: Center(
-                                    child: Text(
-                                      "Explore",
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold),
-                                    )),
+                              RaisedButton(
+                                color: Colors.transparent,
+                                elevation: 0,
+                                onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => HerbScreen(herb: titles[randomNumber], image:images[randomNumber],)));},
+                                child: Container(
+                                  height: 50,
+                                  margin: EdgeInsets.symmetric(horizontal: 40),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Color(0xff1E5128)),
+                                  child: Center(
+                                      child: Text(
+                                        "Explore",
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold),
+                                      )),
+                                ),
                               ),
                               SizedBox(
                                 height: 30,
