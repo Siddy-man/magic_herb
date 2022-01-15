@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
-import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:magic_herb/screens/cartScreen.dart';
 
 class Checkout extends StatefulWidget {
@@ -28,6 +27,7 @@ class _CheckoutState extends State<Checkout> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffb0c2ab),
         appBar: AppBar(
           backgroundColor: Color(0xff1E5128),
           title: Text('Checkout'),
@@ -43,22 +43,15 @@ class _CheckoutState extends State<Checkout> {
               ),
             ),
             Padding(
-                padding: EdgeInsets.only(
-                    right: MediaQuery.of(context).size.width * 0.05,  bottom: 30.0,),
-                child: SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.3,
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    child: Card(
-                        child: Image.network(
-                            "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/03-removebg-preview.png")
-                    )
-                )
+                padding: EdgeInsets.all(20),
+                child: Image.network(
+                    "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/03-removebg-preview.png")
             ),
             Padding(
               padding: EdgeInsets.only(
                   right: MediaQuery.of(context).size.width * 0.55),
               child: Text("Payment Details",
-                  style: TextStyle(color: Colors.grey[500], fontSize: 20)),
+                  style: TextStyle(color: Colors.white, fontSize: 20)),
             ),
             ListTile(
                 title: TextField(

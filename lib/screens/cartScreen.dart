@@ -10,9 +10,20 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
+
+  void showAlert(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          content: Text("This feature is under development"),
+        ));
+  }
+
   @override
   Widget build(BuildContext context) {
+    Future.delayed(Duration.zero, () => showAlert(context));
     return Scaffold(
+      backgroundColor: Color(0xbe94a78e),
       appBar:AppBar(title: Text("Your Cart"), automaticallyImplyLeading: false, backgroundColor: Color(0xff1E5128)),
       body: Column(
         children: <Widget>[
@@ -20,15 +31,17 @@ class _CartScreenState extends State<CartScreen> {
             child: ListView(
               padding: EdgeInsets.all(10.0),
               children: <Widget>[
-                GroceryListItemThree(
-                  image: "https://image.freepik.com/free-vector/hand-drawn-fruit-collection_23-2148941359.jpg",
-                  subtitle: "4 in a pack",
-                  title: "Pineapple",
+                ProductListItem(
+                  image: "https://image.freepik.com/free-photo/dry-turmeric-dust-haldi-powder-also-known-as-curcuma-longa-linn-selective-focus_466689-75729.jpg",
+                  subtitle: "100 g",
+                  title: "Turmeric Powder",
+                  price: 900,
                 ),
-                GroceryListItemThree(
-                  image: "https://image.freepik.com/free-vector/hand-drawn-fruit-collection_23-2148941359.jpg",
-                  subtitle: "1 kg",
-                  title: "cabbage",
+                ProductListItem(
+                  image: "https://image.freepik.com/free-photo/selective-focus-shot-basil-leaves_181624-51036.jpg",
+                  subtitle: "50 g",
+                  title: "Tulsi",
+                  price: 600,
                 ),
               ],
             ),
@@ -98,8 +111,8 @@ class _CartScreenState extends State<CartScreen> {
   }
 }
 
-class GroceryListItemThree extends StatelessWidget {
-  const GroceryListItemThree({
+class ProductListItem extends StatelessWidget {
+  const ProductListItem({
     Key? key,
     required this.title,
     required this.subtitle,
@@ -132,32 +145,59 @@ class GroceryListItemThree extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  new Text(title),
-                  new Text(subtitle)
+                  new Text(title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                  SizedBox(height: 15,),
+                  new Text(subtitle, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),),
                 ],
               ),
             ),
           ),
           const SizedBox(width: 10.0),
           Column(
-            children: <Widget>[
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
               IconButton(
-                icon: Icon(Icons.add_circle),
-                color: Colors.green,
+                icon: Icon(Icons.delete),
+                color: Color(0xff1E5128),
                 onPressed: () {},
               ),
-              Text(
-                "1",
-                textAlign: TextAlign.right,
-                style: TextStyle(fontWeight: FontWeight.bold),
+              Row(
+                children: <Widget>[
+                  IconButton(
+                    icon: Icon(Icons.remove_circle),
+                    color: Color(0xff1E5128),
+                    onPressed: () {},
+                  ),
+                  Text(
+                    "1",
+                    textAlign: TextAlign.right,
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  IconButton(
+                    icon: Icon(
+                      Icons.add_circle,
+                    ),
+                    color: Color(0xff1E5128),
+                    onPressed: () {},
+                  ),
+                ],
               ),
-              IconButton(
-                icon: Icon(
-                  Icons.remove_circle,
+              Padding(
+                padding: const EdgeInsets.only(right: 14.0),
+                child: Row(
+                  children: [
+                    Text(
+                      "Amount",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox( width: 10,),
+                    Text(
+                      price.toString(),
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ],
                 ),
-                color: Colors.green,
-                onPressed: () {},
-              )
+              ),
             ],
           ),
           const SizedBox(width: 10.0),

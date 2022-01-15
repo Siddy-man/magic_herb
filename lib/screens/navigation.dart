@@ -8,6 +8,8 @@ import 'learnScreen.dart';
 
 class Navigation extends StatefulWidget {
   const Navigation({Key? key}) : super(key: key);
+   // final Stream<int> stream;
+  // const Navigation({Key? key,required this.stream}) : super(key: key);
 
   @override
   _NavigationState createState() => _NavigationState();
@@ -16,13 +18,29 @@ class Navigation extends StatefulWidget {
 class _NavigationState extends State<Navigation> {
   final List<Widget> _tabItems = [HomeScreen(), LearnScreen(), DoScreen(), CartScreen(), ProfileScreen()];
   int _page = 0;
+  int newIndex = 0;
   GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   widget.stream.listen((index){
+  //     mySetState(index);
+  //   });
+  // }
+  //
+  // void mySetState(int index){
+  //   setState(() {
+  //     newIndex = index!;
+  //   });
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: CurvedNavigationBar(
         key: _bottomNavigationKey,
-        index: 0,
+        index: newIndex,
         height: 50,
         items: [
           Icon(Icons.home_filled,

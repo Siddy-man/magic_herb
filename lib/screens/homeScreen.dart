@@ -2,9 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:magic_herb/screens/doScreen.dart';
-import 'package:magic_herb/screens/projectDescriptionScreen.dart';
-
-import 'herbDescriptionScreen.dart';
 import 'herbScreen.dart';
 
 
@@ -78,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade300,
+      backgroundColor: Color(0xbe94a78e),
       body: Stack(
         children: <Widget>[
           SingleChildScrollView(
@@ -86,6 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               children: <Widget>[
                 Container(
+                  width: MediaQuery.of(context).size.width*1,
                   padding: const EdgeInsets.only(left: 16.0, right: 50),
                   height: 190,
                   decoration: BoxDecoration(
@@ -98,18 +96,18 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: <Widget>[
                       const SizedBox(height: 70),
                       Text(
-                        "Homescreen",
+                        greetings[randomGreeting],
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 24.0, color: Colors.white),
+                            fontWeight: FontWeight.bold, fontSize: 20.0, color: Colors.white),
                       ),
                       const SizedBox(height: 20.0),
-                      Text(greetings[randomGreeting] + "(UserName)" + "!👋" ,style:TextStyle(fontSize: 20, fontWeight:FontWeight.w400, color: Colors.grey))
+                      // Text("Robert" ,style:TextStyle(fontSize: 24, fontWeight:FontWeight.bold, color: Colors.white))
                     ],
                   ),
                 ),
                 const SizedBox(height: 30.0),
                 const SizedBox(height: 20.0),
-                        Container(color: Colors.red, height: 300, child:
+                        Container( height: 300, child:
                         Column(
                           children: <Widget>[
                         Container(
@@ -170,7 +168,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ])),
 
                 const SizedBox(height: 30.0),
-                Container(color: Colors.red, height: 300, child:
+                Container( height: 300, child:
                 Column(
                     children: <Widget>[
                       Container(
@@ -205,7 +203,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               RaisedButton(
                                 color: Colors.transparent,
                                 elevation: 0,
-                                onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => HerbScreen(herb: titles[randomNumber], image:images[randomNumber],)));},
+                                onPressed: (){
+                                  // Navigator.push(context, MaterialPageRoute(builder: (context) => HerbScreen(document: ,)));
+                                  },
                                 child: Container(
                                   height: 50,
                                   margin: EdgeInsets.symmetric(horizontal: 40),
@@ -253,7 +253,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   overflow: TextOverflow.ellipsis,
                   child: Semantics(
                     child: Text(
-                      'Homescreen',
+                        greetings[randomGreeting],
                       style: TextStyle(color: Colors.white, fontSize: 18.0,fontWeight: FontWeight.bold),
                     ),
                     header: true,
@@ -275,109 +275,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
-// class HomeScreen extends StatelessWidget {
-//   List images = [
-//     "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/borage.jpg",
-//     "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/jimbu.jpg",
-//     "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/rue.jpg",
-//     "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/shiso.jpg",
-//     "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/sorrel.jpg",
-//     "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/tulsi.jpg",
-//     "https://raw.githubusercontent.com/Siddy-man/Herb-Image-MH/main/turmeric.jpg"
-//   ];
-//   List titles = [
-//     "Borage",
-//     "Jimbu",
-//     "Rue",
-//     "Sisho",
-//     "Sorrel",
-//     "Tulsi",
-//     "Turmeric"
-//   ];
-//   List greetings = [
-//     "Welcome Back ",
-//     "What's Up ",
-//     "Let's go ",
-//     "Get ready to have some fun ",
-//     "Hi "
-//   ];
-//   int randomNumber = Random().nextInt(7);
-//   int randomGreeting = Random().nextInt(5);
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//         body: SingleChildScrollView(
-//           child: Column(
-//             children: [
-//               Center(child: Text(greetings[randomGreeting] + "(UserName)" + "!👋" ,style:TextStyle(fontSize: 30, fontWeight:FontWeight.bold)),),
-//               Center(
-//                 child: Padding(
-//                   padding:EdgeInsets.only(left:20,top: 50),
-//                   child:Text("Herb Of The Day", style:TextStyle(fontSize: 30, fontWeight:FontWeight.w600)),
-//                 )
-//               ),
-//               Center(
-//                 child: Column(
-//                   children: [
-//                     Container(
-//                       width: MediaQuery.of(context).size.width*0.9,
-//                       height: MediaQuery.of(context).size.height*0.3,
-//                       child: Card(
-//                         child: Column(
-//                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//                           children:[
-//
-//                             Container(
-//                               child: Image.network(images[randomNumber]),
-//                               height: 120,
-//                               width: 120
-//                             ),
-//
-//                             Text(titles[randomNumber]),
-//                             RaisedButton(
-//                                 onPressed: () {Navigator.push(context, MaterialPageRoute(builder:(context) => HerbDescription(title: titles[randomNumber], image: images[randomNumber])));},
-//                               child: Text("Learn About This Herb")
-//                             ),
-//                             RaisedButton(
-//                                 onPressed: () {Navigator.push(context, MaterialPageRoute(builder:(context) => HerbDescription(title: titles[randomNumber], image: images[randomNumber])));},
-//                                 child: Text("Browse products/recipes with this herb")
-//                             )
-//                           ]
-//                         ),
-//                         elevation: 5,
-//                       )
-//                     ),
-//                     SizedBox(height: 20),
-//                     Container(
-//                         width: MediaQuery.of(context).size.width*0.9,
-//                         height: MediaQuery.of(context).size.height*0.45,
-//                         child: Card(
-//                           child: Column(
-//                               mainAxisAlignment: MainAxisAlignment.start,
-//                               children:[
-//                                 Container(
-//                                   child: Center(child: Text("Deal Of The Day", style:TextStyle(color: Colors.white, fontSize: 30, fontWeight:FontWeight.w600))),
-//                                   width: MediaQuery.of(context).size.width*0.9,
-//                                   color: Colors.redAccent
-//                                 ),
-//                                 SizedBox(height: 20),
-//                                 Text("Example Recipe"),
-//                                 Image.network(""),
-//                                 RaisedButton(
-//                                     onPressed: (){Navigator.push(context, MaterialPageRoute(builder:(context) => ProjectDescriptionScreen()));},
-//                                     child: Text("View This Item")
-//                                 )
-//                               ]
-//                           ),
-//                           elevation: 5,
-//                         )
-//                     ),
-//                 ],
-//               )
-//               ),
-//           ],
-//         )
-//     ));
-//   }
-// }

@@ -41,6 +41,11 @@ dependencies:
   flutter_swiper_null_safety:
   firebase_core:
   firebase_auth:
+  firebase_storage:
+  fluttertoast:
+  image_picker:
+  cloud_firestore:
+  provider:
 dev_dependencies:
   flutter_test:
     sdk: flutter

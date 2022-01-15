@@ -2,8 +2,14 @@ import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:magic_herb/auth/auth_services.dart';
 import 'package:magic_herb/screens/homeScreen.dart';
 import 'package:magic_herb/screens/signIn.dart';
+import 'package:magic_herb/screens/user_details.dart';
+import 'package:provider/provider.dart';
+
+import 'navigation.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -19,8 +25,10 @@ class _SignUpState extends State<SignUp> {
 
   @override
   Widget build(BuildContext context) {
+    final authService = Provider.of<AuthService>(context);
+
     return Container(
-      color: Colors.grey.shade300,
+      color: Color(0xff94a78e),
       child: Stack(
         children: [
           CustomPaint(
@@ -31,6 +39,7 @@ class _SignUpState extends State<SignUp> {
             backgroundColor: Colors.transparent,
             body: ListView(
               children: [
+                SizedBox(height: 50,),
                 Container(
                   width: 100,
                   height: 100,
@@ -41,7 +50,7 @@ class _SignUpState extends State<SignUp> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 30.0),
+                const SizedBox(height: 70.0),
                 Container(
                   margin: const EdgeInsets.all(8.0),
                   decoration: BoxDecoration(
@@ -73,7 +82,7 @@ class _SignUpState extends State<SignUp> {
                       TextField(
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
-                            labelText: "Username",
+                            labelText: "Name",
                           ),
                           controller: nameTextController),
                       const SizedBox(height: 10.0),
@@ -85,26 +94,34 @@ class _SignUpState extends State<SignUp> {
                           ),
                           controller: passwordTextController),
                       const SizedBox(height: 30.0),
-                      RaisedButton(
-                        padding: const EdgeInsets.all(16.0),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30.0)),
-                        color: Color(0xff4f7344),
-                        textColor: Colors.white,
-                        onPressed: () {
-                          FirebaseAuth.instance
-                              .createUserWithEmailAndPassword(
-                                  email: emailTextController.text,
-                                  password: passwordTextController.text)
-                              .then((value) {
-                            print("Created New Account");
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) => HomeScreen()));
-                          }).onError((error, stackTrace) {
-                            print("Error ${error.toString()}");
-                          });
-                        },
-                        child: Text("Sign Up"),
+                      Container(
+                        width: MediaQuery.of(context).size.width*.5,
+                        child: RaisedButton(
+                          padding: const EdgeInsets.all(16.0),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0)),
+                          color: Color(0xff4f7344),
+                          textColor: Colors.white,
+                          onPressed: () async {
+                            await authService.createUserWithEmailAndPassword(
+                                emailTextController.text, passwordTextController.text).then((value) {
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => UserDetailScreen(email: emailTextController.text, name: nameTextController.text)));
+                              final userId = FirebaseAuth.instance.currentUser!.uid;
+                              // saveUser(userId);
+                              Fluttertoast.showToast(
+                                  msg: "User Registered Successfully!!",
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.BOTTOM);
+                            }).catchError((error){
+                              showDialog(context: context,
+                                  builder: (con) {
+                                    return AlertDialog(title: Text("Error"),content: Text(error.toString()
+                                    ),);
+                                  } );
+                            });
+                          },
+                          child: Text("Sign Up"),
+                        ),
                       ),
                       const SizedBox(height: 10.0),
                     ],
@@ -189,7 +206,7 @@ class RPSCustomPainter extends CustomPainter {
         size.width * 0.64, size.height * 0.08);
     path_1.close();
 
-    canvas.drawPath(path_1, paint_1);
+    // canvas.drawPath(path_1, paint_1);
   }
 
   @override

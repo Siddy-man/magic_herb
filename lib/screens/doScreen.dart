@@ -21,29 +21,40 @@ class _DoScreenState extends State<DoScreen> {
     "https://image.freepik.com/free-vector/cosmetic-product-background_52683-205.jpg",
   ];
 
+  void showAlert(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          content: Text("This feature is under development"),
+        ));
+  }
+
   @override
   Widget build(BuildContext context) {
+    Future.delayed(Duration.zero, () => showAlert(context));
     return Scaffold(
+      backgroundColor: Color(0xbe94a78e),
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
             backgroundColor: Color(0xff1E5128),
-              // automaticallyImplyLeading: false,
+              automaticallyImplyLeading: false,
               expandedHeight: 150.0,
               pinned: true,
               flexibleSpace: FlexibleSpaceBar(
                 title: Text('Marketplace'),
                 background: Image.network(images[0], fit: BoxFit.cover),
               ),
-              actions: <Widget>[
-                IconButton(
-                  icon: const Icon(Icons.favorite_border),
-                  tooltip: 'Favorites',
-                  onPressed: () {
-                    /* ... */
-                  },
-                ),
-              ]),
+              // actions: <Widget>[
+              //   IconButton(
+              //     icon: const Icon(Icons.favorite_border),
+              //     tooltip: 'Favorites',
+              //     onPressed: () {
+              //       /* ... */
+              //     },
+              //   ),
+              // ]
+          ),
           SliverToBoxAdapter(
             child: Container(
                 color: Color(0xff1E5128),
@@ -58,12 +69,12 @@ class _DoScreenState extends State<DoScreen> {
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold))),
-                      MaterialButton(
-                          onPressed: () {},
-                          child: Text("See All".toUpperCase(),
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w400))),
+                      // MaterialButton(
+                      //     onPressed: () {},
+                      //     child: Text("See All".toUpperCase(),
+                      //         style: TextStyle(
+                      //             color: Colors.white,
+                      //             fontWeight: FontWeight.w400))),
                     ],
                   ),
                 )),
@@ -95,16 +106,16 @@ class _DoScreenState extends State<DoScreen> {
                     children: <Widget>[
                       MaterialButton(
                           onPressed: () {},
-                          child: Text("Deal Of The Day".toUpperCase(),
+                          child: Text("Hot Deals".toUpperCase(),
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold))),
-                      MaterialButton(
-                          onPressed: () {},
-                          child: Text("See All".toUpperCase(),
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w400))),
+                      // MaterialButton(
+                      //     onPressed: () {},
+                      //     child: Text("See All".toUpperCase(),
+                      //         style: TextStyle(
+                      //             color: Colors.white,
+                      //             fontWeight: FontWeight.w400))),
                     ],
                   ),
                 )),
@@ -154,35 +165,38 @@ class _DoScreenState extends State<DoScreen> {
   }
 
   Widget _buildItems(int index, BuildContext context) {
-    return Container(
-      height: 200,
-      child: GestureDetector(
-        onTap: () => _onTapItem(context, index),
-        child: Column(
-          children: <Widget>[
-            Expanded(
-                child: Hero(
-                    tag: "item$index",
-                    child: Image.network(images[index % images.length],
-                        fit: BoxFit.cover))),
-            SizedBox(
-              height: 10.0,
-            ),
-            Text(
-              'Top Quality fashion item',
-              softWrap: true,
-            ),
-            SizedBox(
-              height: 10.0,
-            ),
-            Text(
-              'Rs.1,254',
-              style: TextStyle(
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xff1E5128)),
-            ),
-          ],
+    return Padding(
+      padding: const EdgeInsets.only(top : 16.0),
+      child: Container(
+        height: 200,
+        child: GestureDetector(
+          onTap: () => _onTapItem(context, index),
+          child: Column(
+            children: <Widget>[
+              Expanded(
+                  child: Hero(
+                      tag: "item$index",
+                      child: Image.network(images[index % images.length],
+                          fit: BoxFit.cover))),
+              SizedBox(
+                height: 10.0,
+              ),
+              Text(
+                'Top Quality fashion item',
+                softWrap: true,
+              ),
+              SizedBox(
+                height: 10.0,
+              ),
+              Text(
+                'Rs.1,254',
+                style: TextStyle(
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xff1E5128)),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -219,6 +233,7 @@ class _DoScreenState extends State<DoScreen> {
         .push(MaterialPageRoute<void>(builder: (BuildContext context) {
       return Scaffold(
         appBar: AppBar(
+          backgroundColor: Color(0xff1E5128),
           title: const Text('Top quality fashion item'),
         ),
         body: Material(
@@ -254,19 +269,22 @@ class _DoScreenState extends State<DoScreen> {
                         color: Color(0xff1E5128)),
                   ),
                   SizedBox(height: 10),
-                  RaisedButton(
-                    color: Color(0xff191A19),
-                      onPressed: () {},
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(right: 15.0),
-                              child: Text("Add To Cart", style:TextStyle(color: Colors.white)),
-                            ),
-                            Icon(Icons.add_shopping_cart_sharp,
-                                color: Colors.white),
-                          ]))
+                  Container(
+                    height:50,
+                    child: RaisedButton(
+                        color: Color(0xff1E5128),
+                        onPressed: () {},
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right: 15.0),
+                                child: Text("Add To Cart", style:TextStyle(color: Colors.white)),
+                              ),
+                              Icon(Icons.add_shopping_cart_sharp,
+                                  color: Colors.white),
+                            ])),
+                  )
                 ],
               ),
             ),

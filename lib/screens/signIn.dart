@@ -1,11 +1,14 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:magic_herb/auth/auth_services.dart';
 import 'dart:ui' as ui;
 
 import 'package:magic_herb/screens/signUp.dart';
+import 'package:provider/provider.dart';
 
 import 'navigation.dart';
+
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
 
@@ -14,11 +17,15 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    final authService = Provider.of<AuthService>(context);
     return Center(
       child: Container(
-        color: Colors.grey.shade300,
+        color: Color(0xff94a78e),
         child: Stack(
           children: [
             CustomPaint(
@@ -30,18 +37,18 @@ class _SignInState extends State<SignIn> {
               body: Center(
                 child: ListView(
                   children: [
+                    SizedBox(height: 50,),
                     Container(
                       width: 100,
                       height: 100,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         image: DecorationImage(
-                            image: AssetImage('assets/images/Herb.jpg'),
+                          image: AssetImage('assets/images/Herb.jpg'),
                         ),
                       ),
                     ),
-
-                    const SizedBox(height: 90.0),
+                    const SizedBox(height: 70.0),
                     Container(
                       margin: const EdgeInsets.all(8.0),
                       decoration: BoxDecoration(
@@ -53,10 +60,11 @@ class _SignInState extends State<SignIn> {
                         children: [
                           Text(
                             "Welcome Back!",
-                            style: Theme.of(context).textTheme.headline4!.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.grey.shade800,
-                                ),
+                            style:
+                                Theme.of(context).textTheme.headline4!.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.grey.shade800,
+                                    ),
                           ),
                           Text(
                             "Sign in to your account",
@@ -64,6 +72,7 @@ class _SignInState extends State<SignIn> {
                           ),
                           const SizedBox(height: 20.0),
                           TextField(
+                            controller: emailController,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
                               labelText: "Email address",
@@ -71,6 +80,7 @@ class _SignInState extends State<SignIn> {
                           ),
                           const SizedBox(height: 10.0),
                           TextField(
+                            controller: passwordController,
                             obscureText: true,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
@@ -82,19 +92,39 @@ class _SignInState extends State<SignIn> {
                               alignment: Alignment.centerRight,
                               child: Text("Forgot your Password?")),
                           const SizedBox(height: 20.0),
-                          RaisedButton(
-                            padding: const EdgeInsets.all(16.0),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30.0)),
-                            color: Color(0xff4f7344),
-                            textColor: Colors.white,
-                            onPressed: () {
-                              Navigator.push(context, MaterialPageRoute(builder:(context) => Navigation()));
+                          Container(
+                            width: MediaQuery.of(context).size.width*.5,
+                            child: RaisedButton(
+                              padding: const EdgeInsets.all(16.0),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30.0)),
+                              color: Color(0xff4f7344),
+                              textColor: Colors.white,
+                              onPressed: () async {
+                                authService
+                                    .signInWithEmailAndPassword(
+                                        emailController.text,
+                                        passwordController.text)
+                                    .then((auth) {
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Navigation()));
+                                }).catchError((error) {
+                                  showDialog(
+                                      context: context,
+                                      builder: (con) {
+                                        return AlertDialog(
+                                          title: Text("Error"),
+                                          content: Text(error.toString()),
+                                        );
+                                      });
+                                });
                               },
-                            child: Text("Login"),
+                              child: Text("Login"),
+                            ),
                           ),
                           const SizedBox(height: 10.0),
-
                         ],
                       ),
                     ),
@@ -105,18 +135,19 @@ class _SignInState extends State<SignIn> {
                         Text("Don't have an account?"),
                         const SizedBox(width: 10.0),
                         InkWell(
-                          child: Text(
-                            "Register Now",
-                            style: TextStyle(
-                              color: Color(0xff4f7344),
-                              fontWeight: FontWeight.w500,
-                              decoration: TextDecoration.underline),
+                            child: Text(
+                              "Register Now",
+                              style: TextStyle(
+                                  color: Color(0xff4f7344),
+                                  fontWeight: FontWeight.w500,
+                                  decoration: TextDecoration.underline),
                             ),
-                          onTap:(){
-
-                            Navigator.push(context, MaterialPageRoute(builder:(context) => SignUp()));
-                          }
-                        ),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => SignUp()));
+                            }),
                       ],
                     ),
                   ],
@@ -129,6 +160,7 @@ class _SignInState extends State<SignIn> {
     );
   }
 }
+
 class RPSCustomPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
@@ -154,7 +186,7 @@ class RPSCustomPainter extends CustomPainter {
     path_0.lineTo(size.width * 0.64, 0);
     path_0.close();
 
-    canvas.drawPath(path_0, paint_0);
+    // canvas.drawPath(path_0, paint_0);
     Paint paint_1 = new Paint()
       ..style = PaintingStyle.fill
       ..strokeWidth = 1;
@@ -179,6 +211,7 @@ class RPSCustomPainter extends CustomPainter {
 
     canvas.drawPath(path_1, paint_1);
   }
+
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
     return true;
